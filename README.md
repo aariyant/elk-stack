@@ -217,6 +217,45 @@ __Install Elasticsearch__
 
 </p>
 </details>
+
+<details open>
+<summary><b><font size="4">Docker</font></b></summary>
+<p>
+
+1. Make sure you already installed docker compose, if not please follow this url [install-docker-compose](https://docs.docker.com/compose/install)
+2. Create file with name `docker-compose.yaml` and paste this configuration :
+    ```yaml
+    version: '3'
+    services:
+      elasticsearch01:
+        image: docker.elastic.co/elasticsearch/elasticsearch:7.17.23
+        container_name: elasticsearch01
+        ports:
+          - '9200:9200'
+        environment:
+          - discovery.type=single-node
+          - ES_JAVA_OPTS=-Xmx512m -Xms512m
+          - node.name=elasticsearch01
+          - cluster.name=elasticsearch
+          - xpack.security.enabled=false
+        volumes:
+          - ./elasticsearch/data:/usr/share/elasticsearch/data
+        networks:
+          - elk
+
+    networks:
+      elk:
+        driver: bridge
+    ```
+3. Save it and execute this command :
+    ```shell
+    docker-compose up -d
+    ```
+> __NOTE:__  Dont forget to update the `environment` values.
+
+</p>
+</details>
+
 ---
 
 ### Kibana
@@ -348,6 +387,37 @@ __Install Kibana__
     ```shell
     .\bin\kibana.bat
     ```
+
+</p>
+</details>
+
+<details open>
+<summary><b><font size="4">Docker</font></b></summary>
+<p>
+
+1. Make sure you already installed docker compose, if not please follow this url [install-docker-compose](https://docs.docker.com/compose/install)
+2. Create file with name `docker-compose.yaml` and paste this configuration :
+    ```yaml
+      kibana:
+        image: docker.elastic.co/kibana/kibana:7.17.23
+        container_name: kibana
+        ports:
+          - '5601:5601'
+        environment:
+          - SERVERNAME=kibana
+          - ELASTICSEARCH_HOSTS=http://elasticsearch01:9200
+          - ES_JAVA_OPTS=-Xmx512m -Xms512m
+          - xpack.maps.showMapVisualizationTypes=true
+        networks:
+          - elk
+        depends_on:
+          - elasticsearch01
+    ```
+3. Save it and execute this command :
+    ```shell
+    docker-compose up -d
+    ```
+> __NOTE:__  Dont forget to update the `environment` values.
 
 </p>
 </details>
