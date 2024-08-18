@@ -15,10 +15,10 @@ Elasticsearch is a distributed, RESTful search and analytics engine with capabil
 
 Elasticsearch provides fast and flexible search capabilities, enabling users to perform complex searches across various fields and apply aggregations to explore and visualize data.
 
-#### elasticsearch
-elasticsearch is a data collection and processing tool. Its basically a data processing pipeline that takes the data from multitude of sources and tosses it over to a visualization tool like Kibana or Elasticsearch.
+#### Logstash
+Logstash is a data collection and processing tool. Its basically a data processing pipeline that takes the data from multitude of sources and tosses it over to a visualization tool like Kibana or Elasticsearch.
 
-elasticsearch can also enrich data by applying filters, transformations, and enrichments before sending it to Elasticsearch. It allows ingestion, parsing, and transforming data from various sources and formats.
+Logstash can also enrich data by applying filters, transformations, and enrichments before sending it to Elasticsearch. It allows ingestion, parsing, and transforming data from various sources and formats.
 
 #### Kibana
 Kibana is the user interface into the elastic stack. It lets you visualize data, make queries, do monitoring, and everything else with the data is in elasticsearch.
